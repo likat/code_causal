@@ -22,16 +22,16 @@ datfull <- faps %>%
            SEX == "1" ~ "male"),
          pctpov = case_when(# 349 missing, probably better to use INDFMPIR (pctpov to poverty guideline, but greater number of NA)
            pctpovguidehh_r <= 100 ~ "below 100%",
-           pctpovguidehh_r <= 184 ~ "100-184%",
-           pctpovguidehh_r >= 185 ~ "185%+")
+           pctpovguidehh_r <= 185 ~ "100-185%",
+           pctpovguidehh_r > 185 ~ "185%+")
          , 
-         wicelig = case_when( # eligeble for WIC?
+         wicelig = case_when( # eligible for WIC?
            wiccategelig == 0 ~ "No",
            wiccategelig == 1 ~ "Yes"
          ),
          age = case_when(
-          AGE_R >= 18 & AGE_R <= 35 ~ "18-35",
-          AGE_R >= 36 & AGE_R <= 65 ~ "35-65",
+          AGE_R >= 18 & AGE_R <= 34 ~ "18-34",
+          AGE_R > 34 & AGE_R <= 65 ~ "35-65",
            AGE_R > 65 ~ "65+"
            ),
          race = case_when(
